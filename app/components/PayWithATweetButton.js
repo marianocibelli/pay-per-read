@@ -14,6 +14,24 @@ class PayWithATweet extends React.Component {
     this.payWithATweet = this.payWithATweet.bind(this);
   }
 
+  componentWillReceiveProps(nextProps){
+    const bookId = this.state.bookId;
+    const nextBookId = nextProps.bookId;
+
+    if(bookId !== nextBookId)
+    this.setState({
+      bookId : nextProps.bookId,
+      wasPaid : false
+    })
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    const bookId = this.state.bookId;
+    const nextBookId = nextProps.bookId;
+    // Compare book or id change.
+    return (bookId !== nextBookId || !_.isEqual(this.state.wasPaid, nextState.wasPaid))
+  }
+
   render() {
     const { wasPaid, downloadLink } = this.state
     if(!wasPaid){
