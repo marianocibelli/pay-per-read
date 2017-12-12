@@ -6,15 +6,20 @@
     "build:watch": "babel ./app -d build --watch",
     "build:watch:client": "webpack --config ./webpack.config.js/ --watch",
     "build": "babel ./app -d build",
-    "build:client": "webpack --config ./webpack.config.js/",
+    "build:client": "webpack --config ./webpack.config.prod.js/",
     "build:prod": "npm run build && npm run build:client",
     "start:dev": "parallelshell 'npm run build:watch' 'npm run build:watch:client' 'nodemon ./build/server/index.js'",
     "start:prod": "npm run build:prod && NODE_ENV=production node ./build/server/index.js"
   },
   "dependencies": {
+    "assets-webpack-plugin": "^3.5.1",
     "auth0-js": "^8.12.0",
     "aws-sdk": "^2.167.0",
     "axios": "^0.17.1",
+    "babel-cli": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
     "body-parser": "~1.13.2",
     "contentful": "^5.0.5",
     "cookie-parser": "~1.3.5",
@@ -28,16 +33,12 @@
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-router-dom": "^4.2.2",
-    "twitter": "^1.7.1"
+    "twitter": "^1.7.1",
+    "webpack": "^3.10.0"
   },
   "devDependencies": {
-    "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
-    "babel-loader": "^7.1.2",
-    "babel-preset-es2015": "^6.24.1",
-    "babel-preset-react": "^6.24.1",
     "nodemon": "^1.12.5",
-    "parallelshell": "^3.0.2",
-    "webpack": "^3.10.0"
+    "parallelshell": "^3.0.2"
   }
 }

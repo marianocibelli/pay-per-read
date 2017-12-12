@@ -1,3 +1,11 @@
+import jsonAssets from '../webpack-assets.json';
+let jsArray = '';
+for(let bundle of Object.entries(jsonAssets)){
+  if(bundle[1] && bundle[1]['js']){
+      jsArray += `<script src="${bundle[1]['js']}"></script> \n`
+  }
+}
+
 export default function renderFullPage(html) {
   return `
     <!doctype html>
@@ -9,7 +17,7 @@ export default function renderFullPage(html) {
       <div id="root">
         ${html}
       </div>
-      <script src="/bundle.js"></script>
+      ${jsArray}
     </body>
     </html>
   `

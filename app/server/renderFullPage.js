@@ -1,4 +1,13 @@
+import jsonAssets from '../webpack-assets.json';
+let jsArray = '';
+for(let bundle of Object.entries(jsonAssets).reverse()){
+  if(bundle[1] && bundle[1]['js']){
+      jsArray += `<script src="${bundle[1]['js']}"></script> \n`
+  }
+}
+
 export default function renderFullPage(html, preloadedState) {
+
   return `
     <!doctype html>
     <html>
@@ -12,7 +21,7 @@ export default function renderFullPage(html, preloadedState) {
       <script>
         window.__PRELOADED_STATE__ = ${JSON.stringify(preloadedState).replace(/</g, '\\u003c')}
       </script>
-      <script src="/bundle.js"></script>
+      ${jsArray}
     </body>
     </html>
   `

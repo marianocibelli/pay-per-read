@@ -1,14 +1,15 @@
 var path = require('path');
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-
+var AssetsPlugin = require('assets-webpack-plugin');
 
 module.exports = {
   devtool: 'inline-source-map',
   entry: './app/index.js',
   output: {
     path: path.join(__dirname, 'build'),
-    filename: 'bundle.js'
+    filename: 'bundle.js',
+    publicPath: '/'
   },
   module: {
     loaders: [
@@ -25,5 +26,8 @@ module.exports = {
         }
       }
     ]
-  }
+  },
+  plugins: [
+    new AssetsPlugin({path: path.join(__dirname, 'build')})
+  ]
 };
