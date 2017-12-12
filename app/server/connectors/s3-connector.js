@@ -3,7 +3,7 @@
 import AWS from 'aws-sdk';
 
 const s3 = new AWS.S3();
-const bucket = "books-repository";
+const bucket = "exmc-app-deploys";
 //Since S3 doesnt allow to get a one time link usage we set a short expiration in seconds
 const ttl = 120;
 

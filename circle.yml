@@ -13,10 +13,10 @@ deployment:
     branch: develop
     commands:
       - chmod +x /scripts/deploy.sh
-      - /scripts/deploy.sh dev pay-per-read 0.0.0.0
+      - /scripts/deploy.sh dev pay-per-read
 
   staging:
     branch: master
     commands:
       - chmod +x /scripts/deploy.sh
-      - /scripts/deploy.sh prod pay-per-read 0.0.0.0
+      - /scripts/deploy.sh dev pay-per-read

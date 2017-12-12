@@ -1,8 +1,8 @@
 #! /bin/bash
-#Usage: deploy.sh environment project instance_to_deploy_ip
+set -euo pipefail
+#Usage: deploy.sh environment project
 #TODO: Dont DONT forget to implement a delete for old versions on s3, its cool to keep a few for rollback purposes (you could use the lambda from literally everywhere and get it easy)
 
-INSTANCE_IP=$3
 PROJECT_NAME=$2
 ENV=$1
 
@@ -39,7 +39,7 @@ fi
 echo $APPLICATION_VERSION
 
 #Uploads version to s3 bucket
-zip -r /tmp/app.zip  * -x node_modules\*
+zip -r /tmp/app.zip  * -x node_modules\* -x build\*
 aws s3 cp /tmp/app.zip s3://exmc-application-deploys/$PROJECT_NAME/builds/$ENV/$APPLICATION_VERSION.zip
 
 # - Calls a lambda to trigger a deploy on the server this lambda should start up a new container
@@ -52,4 +52,4 @@ aws s3 cp /tmp/app.zip s3://exmc-application-deploys/$PROJECT_NAME/builds/$ENV/$
 # Beside this we could also use dockerhub for a better implementation instead of using s3 upload and github tag versioning (and if we go that way we should go all in into kubernetes but that requires like a lot of work)
 
 #I will commit start-up.sh in the project too so its easier to check it out but its fairly simple.
-ssh ec2-user@$INSTANCE_IP ``~/scripts/start-up.sh $ENV $PROJECT_NAME $APPLICATION_VERSION`
+ssh ec2-user@$INSTANCE_IP `sudo /opt/deploys/scripts/start-up.sh $ENV $PROJECT_NAME $APPLICATION_VERSION`
