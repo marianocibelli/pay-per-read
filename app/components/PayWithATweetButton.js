@@ -36,7 +36,7 @@ class PayWithATweet extends React.Component {
   }
 
   payWithATweet(){
-    const bookId = _this.state.bookId;
+    const bookId = this.state.bookId;
     this.serverRequest =
       axios
         .get(`/api/books/download/${bookId}`)

@@ -1,22 +1,22 @@
-const express = require('express');
+import express from 'express';
+import {downloadBook , getBookBasicData} from '../services/books-service';
+import {callBackAuth} from '../services/twitter-service';
 const router = express.Router();
-const bookService = require('../services/books-service');
-const twitterService = require('../services/twitter-service');
 
 router.get('/books/download/:bookName', function(req, res, next) {
-  bookService.downloadBook(req,res,next);
+  downloadBook(req,res,next);
 });
 
-router.get('/auth/callback', function(req, res, next) {
-  twitterService.callBackAuth(req,res,next);
+router.get('/auth/callback', (req, res, next) => {
+  callBackAuth(req,res,next);
 });
 
-router.get('/books/:bookName', function(req, res, next) {
-  bookService.getBookBasicData(req.params.bookName).then((book) => {
+router.get('/books/:bookName', (req, res, next) => {
+  getBookBasicData(req.params.bookName).then((book) => {
     res.status(200).send(book);
   }).catch(err => {
     res.status(404).send("Not Found");
   });
 });
 
-module.exports = router;
+export default router;

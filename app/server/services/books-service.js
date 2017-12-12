@@ -1,25 +1,25 @@
 "use strict"
-const s3Connector = require('../connectors/s3-connector');
-const contentfulConnector = require('../connectors/contentful-connector');
-const twitterConnector = require('../connectors/twitter-connector');
+import {generateDownloadLink} from '../connectors/s3-connector';
+import {getEntryDataById}  from '../connectors/contentful-connector';
+import {tweetTheBook} from '../connectors/twitter-connector';
 
-exports.downloadBook = (req,res,next) => {
+export function downloadBook(req,res,next){
 
   let bookName = req.params.bookName;
   //Tweet it
-  // twitterConnector.tweetTheBook("",{}).then((isTweeted) => {
+  // tweetTheBook("",{}).then((isTweeted) => {
     // if(isTweeted){
       //Generate download link
-      res.send(s3Connector.generateDownloadLink(bookName));
+      res.send(generateDownloadLink(bookName));
     // }else{
     //   res.status(401).send("Authorization failed")
     // }
   // });
 }
 
-exports.getBookBasicData = (bookName) => {
+export function getBookBasicData(bookName){
   //Retrieve book data from contentful
-  return contentfulConnector.getEntryDataById(bookName, 'book').then((entry) => {
+  return getEntryDataById(bookName, 'book').then((entry) => {
     return entry;
   }).catch((err) => {
     console.log(err);

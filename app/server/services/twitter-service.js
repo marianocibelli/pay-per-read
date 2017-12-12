@@ -1,7 +1,7 @@
 "use strict"
-const twitterConnector = require('../connectors/twitter-connector');
+import twitterConnector from '../connectors/twitter-connector';
 
-exports.callBackAuth = (req,res,next) => {
-  
+export function callBackAuth(req,res,next) {
+
   res.sendStatus(200).send("A-OK")
 }

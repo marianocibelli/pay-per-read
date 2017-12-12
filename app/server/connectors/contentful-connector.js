@@ -12,7 +12,7 @@ const contentfulClient = createClient({
 })
 
 
-exports.getEntryDataById = (id, type) =>{
+export function getEntryDataById(id, type){
   if(!id){
     return Promise.reject();
   }
