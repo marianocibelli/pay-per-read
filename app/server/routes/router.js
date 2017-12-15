@@ -20,26 +20,36 @@ export default function router(req, res){
     return;
   }
 
-  //Extract book id from last param. Since we just have 1 match and its a /books/:id we dont have to safe check it again but in case we add more independent views we should do it
-  let bookId = req.url.split('/').pop();
+  //Extract book id from match. Since we just have 1 match and its a /books/:id we dont have to safe check it again but in case we add more independent views we should do it
+  let bookId = match.params.bookId;
 
-  return getBookBasicData(bookId).then(book => {
-    const context = {};
-    const html = renderToString(
-        <StaticRouter context={context} location={req.url}>
-          <App book={book}/>
-        </StaticRouter>
-    )
+  if(bookId){
+    return getBookBasicData(bookId).then(book => {
+      const context = {};
+      const html = renderToString(
+          <StaticRouter context={context} location={req.url}>
+            <App book={book}/>
+          </StaticRouter>
+      )
 
-    res.status(200).send(renderFullPage(html, book));
-  }).catch(err => {
+      res.status(200).send(renderFullPage(html, book));
+    }).catch(err => {
+      const context = {};
+      //TODO: We should renderToString a 404 LANDING page instead but it works for an easier testing for now.
+      const html = renderToString(
+          <StaticRouter context={context} location={req.url}>
+            <App />
+          </StaticRouter>
+      )
+      res.status(404).send(render404(html));
+    })
+  }else{
     const context = {};
-    //TODO: We should renderToString a 404 LANDING page instead but it works for an easier testing for now.
     const html = renderToString(
         <StaticRouter context={context} location={req.url}>
           <App />
         </StaticRouter>
     )
-    res.status(404).send(render404(html));
-  })
+    res.status(200).send(render404(html));
+  }
 }

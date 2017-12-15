@@ -1,11 +1,14 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
-import PayWithATweet from './PayWithATweetButton';
+import PayWithATweet from './PayWithATweetContainer';
+import BookAuthor from '../dumb/BookAuthor';
+import BookSummary from '../dumb/BookSummary';
+import BookTitle from '../dumb/BookTitle';
 import { withRouter } from 'react-router'
 import _ from 'lodash'
 
-class BookLanding extends React.Component {
+class BookContainer extends React.Component {
 
   constructor(props){
     super(props);
@@ -15,7 +18,7 @@ class BookLanding extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const bookId = nextProps.match.params.id;
+    const bookId = nextProps.match.params.bookId;
 
     // Fetch information if needed.
     this.serverRequest =
@@ -33,33 +36,32 @@ class BookLanding extends React.Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    const bookId = this.props.match.params.id;
-    const nextBookId = nextProps.match.params.id;
+    const bookId = this.props.match.params.bookId;
+    const nextBookId = nextProps.match.params.bookId;
 
     // Compare book or id change.
     return (bookId !== nextBookId || !_.isEqual(this.state.book, nextState.book))
   }
 
   render() {
-    const { book, location } = this.state
-    if (book) {
-      return (
+    const { book } = this.state
+      return book ?
+      (
           <div>
-              <h3>TITLE: {book.name}</h3>
-              <p>SUMMARY: {book.summary}</p>
-              <p>AUTHOR: {book.author}</p>
+              <BookTitle title={book.name}></BookTitle>
+              <BookSummary summary={book.summary}></BookSummary>
+              <BookAuthor author={book.author}></BookAuthor>
               <PayWithATweet bookId={book.id}/>
           </div>
       )
-    } else {
-      return (
+      :
+      (
           <div>
               <p>NOT FOUND</p>
           </div>
       )
-    }
   }
 
 }
 
-export default withRouter(BookLanding);
+export default withRouter(BookContainer);

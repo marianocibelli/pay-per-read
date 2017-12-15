@@ -1,11 +1,9 @@
 import React from 'react';
 import {BrowserRouter as Router, Route, Link, Switch} from 'react-router-dom';
-import BookLanding from './BookLanding'
-import { withRouter } from 'react-router'
+import Routes from './Routes';
+import { withRouter } from 'react-router';
 
-var app = function App(props) {
-  const {book} = props;
-
+const App = (props) => {
   return (
     <div>
     <p> Links for testing navigation </p>
@@ -14,17 +12,9 @@ var app = function App(props) {
       <li><Link to='/books/libro-2'> LIBRO 2</Link></li>
       <li><Link to='/books/not-test'> NOT FOUND</Link></li>
     </ul>
-    <Switch>
-      <Route path="/books/:id" render={
-        () => {
-          return (
-            <BookLanding book={book} />
-          )
-        }
-      }/>
-    </Switch>
+      <Routes props={props}/>
     </div>
   )
 };
 
-export default withRouter(app);
+export default withRouter(App);

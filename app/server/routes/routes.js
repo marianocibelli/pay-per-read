@@ -1,5 +1,6 @@
 const routes = [
-  '/books/:id'
+  '/books/:bookId',
+  '/callback'
 ]
 
 export default routes;
