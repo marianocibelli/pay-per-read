@@ -4,7 +4,7 @@ import {matchPath, StaticRouter} from 'react-router-dom';
 
 import routes from './routes';
 import renderFullPage from '../renderFullPage';
-import render404 from '../render404';
+import renderNoData from '../renderNoData';
 import {getBookBasicData} from '../services/books-service';
 import App from '../../components/App';
 
@@ -41,7 +41,7 @@ export default function router(req, res){
             <App />
           </StaticRouter>
       )
-      res.status(404).send(render404(html));
+      res.status(404).send(renderNoData(html));
     })
   }else{
     const context = {};
@@ -50,6 +50,6 @@ export default function router(req, res){
           <App />
         </StaticRouter>
     )
-    res.status(200).send(render404(html));
+    res.status(200).send(renderNoData(html));
   }
 }

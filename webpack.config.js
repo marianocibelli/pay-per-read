@@ -28,6 +28,9 @@ module.exports = {
     ]
   },
   plugins: [
-    new AssetsPlugin({path: path.join(__dirname, 'build')})
+    new AssetsPlugin({path: path.join(__dirname, 'build')}),
+    new webpack.DefinePlugin({
+        'process.env.AUTH0_CALLBACK': JSON.stringify(process.env.AUTH0_CALLBACK),
+    })
   ]
 };
