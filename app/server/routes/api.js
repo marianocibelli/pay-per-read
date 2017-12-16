@@ -1,9 +1,10 @@
 import express from 'express';
 import {downloadBook , getBookBasicData} from '../services/books-service';
 import {callBackAuth} from '../services/twitter-service';
+
 const router = express.Router();
 
-router.get('/books/download/:bookName', function(req, res, next) {
+router.post('/books/download/:bookName', function(req, res, next) {
   downloadBook(req,res,next);
 });
 

@@ -1,9 +1,8 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
-import LogInButton from '../dumb/LogInButton';
+import PayWithATweet from '../dumb/PayWithATweet';
 import Auth from '../Auth';
-import PayWithATweet from '../dumb/PayWithATweet'
 
 const auth = new Auth();
 
@@ -13,7 +12,8 @@ class PayWithATweetContainer extends React.Component {
     super(props);
     this.state = {
       bookId: props.bookId,
-      readyToRender: false
+      readyToRender: false,
+      bookPaid: false
     }
     this.payWithATweet = this.payWithATweet.bind(this);
   }
@@ -28,58 +28,49 @@ class PayWithATweetContainer extends React.Component {
     const bookId = this.state.bookId;
     const nextBookId = nextProps.bookId;
 
-    this.setState({
-      bookId : nextProps.bookId,
-      readyToRender : true
-    })
+    if(bookId !== nextBookId){
+      this.setState({
+        bookId : nextProps.bookId,
+        readyToRender : true,
+        bookPaid: false
+      })
+    }
   }
 
   shouldComponentUpdate(nextProps, nextState) {
     const bookId = this.state.bookId;
     const nextBookId = nextProps.bookId;
     // Compare book or if its ready to render.
-    return (bookId !== nextBookId || this.state.readyToRender !== nextState.readyToRender)
+    return (bookId !== nextBookId || this.state.readyToRender !== nextState.readyToRender || this.state.bookPaid !== nextState.bookPaid)
   }
 
   render() {
-    if(!this.state.readyToRender){
+    const {readyToRender, bookPaid} = this.state;
+    if(!readyToRender){
       return null
     }else{
-      if(!auth || !auth.isAuthenticated()){
+      if(!bookPaid){
         return (
             <div>
-              <LogInButton auth={auth}/>
+              <PayWithATweet payWithATweet={this.payWithATweet}/>
             </div>
         )
-      } else {
-        //The logout button is not a component because its just for testing purposes
+      }else{
         return (
             <div>
-              <PayWithATweet payWithATweet={this.payWithATweet} />
-              <button style={{ cursor: 'pointer' }} onClick={ () => auth.logout()}> Log Out / This is just to test </button>
+              Thanks for your tweet! the download should have started in case it didnt
+              <a href={bookPaid}>Click here</a>
             </div>
         )
       }
     }
   }
 
-  payWithATweet(){
-    const bookId = this.state.bookId;
-    this.serverRequest =
-      axios
-        .get(`/api/books/download/${bookId}`)
-        .then((result) => {
-          this.setState({
-            wasPaid: true,
-            downloadLink: result.data
-          });
-          window.open(result.data);
-        }).catch(err => {
-          this.setState({
-            wasPaid: false
-          });
-        })
+  payWithATweet() {
+    const {bookId} = this.state;
+    auth.login(bookId, this);
   }
+
 
 }
 

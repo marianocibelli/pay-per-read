@@ -2,10 +2,14 @@
 import {generateDownloadLink} from '../connectors/s3-connector';
 import {getEntryDataById}  from '../connectors/contentful-connector';
 import {tweetTheBook} from '../connectors/twitter-connector';
+import jwt from 'jsonwebtoken';
+import {readFileSync} from 'fs';
+const cert = readFileSync('emece.pem');
 
 export function downloadBook(req,res,next){
-
-  let bookName = req.params.bookName;
+  const token = req.body.id_token;
+  const user = jwt.verify(token,cert);
+  const bookName = req.params.bookName;
   //Tweet it
   // tweetTheBook("",{}).then((isTweeted) => {
     // if(isTweeted){
