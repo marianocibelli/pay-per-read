@@ -8,8 +8,8 @@
     "build": "babel ./app -d build",
     "build:client": "webpack --config ./webpack.config.prod.js/",
     "build:prod": "npm run build && npm run build:client",
-    "start:dev": "parallelshell 'npm run build:watch' 'npm run build:watch:client' 'nodemon ./build/server/index.js'",
-    "start:prod": "npm run build:prod && NODE_ENV=production node ./build/server/index.js"
+    "start:dev": "parallelshell 'npm run build:watch' 'npm run build:watch:client' 'nodemon --exec \"node -r dotenv/config\" ./build/server/index.js'",
+    "start:prod": "npm run build:prod && NODE_ENV=production node -r dotenv/config ./build/server/index.js dotenv_config_path=.env.prod"
   },
   "dependencies": {
     "assets-webpack-plugin": "^3.5.1",
