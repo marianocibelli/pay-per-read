@@ -11,7 +11,7 @@ class PayWithATweetContainer extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      bookId: props.bookId,
+      book: props.book,
       readyToRender: false,
       bookPaid: false
     }
@@ -25,12 +25,12 @@ class PayWithATweetContainer extends React.Component {
   }
 
   componentWillReceiveProps(nextProps){
-    const bookId = this.state.bookId;
-    const nextBookId = nextProps.bookId;
+    const book = this.state.book;
+    const nextBook = nextProps.book;
 
-    if(bookId !== nextBookId){
+    if(!_.isEqual(book, nextBook)){
       this.setState({
-        bookId : nextProps.bookId,
+        book : nextProps.book,
         readyToRender : true,
         bookPaid: false
       })
@@ -38,10 +38,8 @@ class PayWithATweetContainer extends React.Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    const bookId = this.state.bookId;
-    const nextBookId = nextProps.bookId;
     // Compare book or if its ready to render.
-    return (bookId !== nextBookId || this.state.readyToRender !== nextState.readyToRender || this.state.bookPaid !== nextState.bookPaid)
+    return (!_.isEqual(this.state.book, nextState.book) || this.state.readyToRender !== nextState.readyToRender || this.state.bookPaid !== nextState.bookPaid)
   }
 
   render() {
@@ -67,8 +65,9 @@ class PayWithATweetContainer extends React.Component {
   }
 
   payWithATweet() {
-    const {bookId} = this.state;
-    auth.login(bookId, this);
+    console.log(this.state);
+    const {book} = this.state;
+    auth.login(book, this);
   }
 
 

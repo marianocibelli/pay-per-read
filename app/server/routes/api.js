@@ -4,7 +4,7 @@ import {callBackAuth} from '../services/twitter-service';
 
 const router = express.Router();
 
-router.post('/books/download/:bookName', function(req, res, next) {
+router.post('/books/download/:bookId', function(req, res, next) {
   downloadBook(req,res,next);
 });
 
@@ -12,8 +12,8 @@ router.get('/auth/callback', (req, res, next) => {
   callBackAuth(req,res,next);
 });
 
-router.get('/books/:bookName', (req, res, next) => {
-  getBookBasicData(req.params.bookName).then((book) => {
+router.get('/books/:bookId', (req, res, next) => {
+  getBookBasicData(req.params.bookId).then((book) => {
     res.status(200).send(book);
   }).catch(err => {
     res.status(404).send("Not Found");

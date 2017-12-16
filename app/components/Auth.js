@@ -19,8 +19,10 @@ export default class Auth {
     this.isAuthenticated = this.isAuthenticated.bind(this);
   }
 
-  login(bookId, context) {
-    localStorage.setItem('bookId', bookId)
+  login(book, context) {
+    localStorage.setItem('bookId', book.id)
+    localStorage.setItem('bookName', book.name)
+    localStorage.setItem('bookTagline', book.tagline)
     auth0Instance.popup.authorize({
       connection: 'twitter'
     }, (res,err) => {
@@ -34,6 +36,8 @@ export default class Auth {
       }
       localStorage.removeItem('downloadLink');
       localStorage.removeItem('bookId')
+      localStorage.removeItem('bookName')
+      localStorage.removeItem('bookTagline')
     });
   }
 
@@ -41,8 +45,10 @@ export default class Auth {
     auth0Instance.parseHash((err, authResult) => {
       if (authResult && authResult.accessToken && authResult.idToken) {
         const bookId = localStorage.getItem('bookId')
+        const bookName = localStorage.getItem('bookName')
+        const bookTagline = localStorage.getItem('bookTagline')
         this.setSession(authResult);
-        this.payWithATweet(bookId);
+        this.payWithATweet(bookId, bookName, bookTagline);
       } else if (err) {
         alert(`Error: ${err.error}. Check the console for further details.`);
       }
@@ -83,7 +89,7 @@ export default class Auth {
     return new Date().getTime() < expiresAt;
   }
 
-  payWithATweet(bookId){
+  payWithATweet(bookId, bookName, bookTagline){
     const session = this.getSession();
     if(session){
       const headers = {
@@ -91,13 +97,14 @@ export default class Auth {
       }
       this.serverRequest =
         axios
-          .post(`/api/books/download/${bookId}`, session, headers)
+          .post(`/api/books/download/${bookId}?name=${bookName}&tagline=${bookTagline}`, session, headers)
           .then((result) => {
             localStorage.setItem('downloadLink',result.data);
             window.close();
             opener.open(result.data);
           }).catch(err => {
             throw err;
+            window.close();
           })
     }else{
       throw new Error('Unauthorized')

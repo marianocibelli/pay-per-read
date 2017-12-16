@@ -4,6 +4,7 @@ import axios from 'axios';
 import PayWithATweet from './PayWithATweetContainer';
 import BookAuthor from '../dumb/BookAuthor';
 import BookSummary from '../dumb/BookSummary';
+import BookTagline from '../dumb/BookTagline';
 import BookTitle from '../dumb/BookTitle';
 import { withRouter } from 'react-router'
 import _ from 'lodash'
@@ -49,9 +50,10 @@ class BookContainer extends React.Component {
       (
           <div>
               <BookTitle title={book.name}></BookTitle>
+              <BookTagline tagline={book.tagline}></BookTagline>
               <BookSummary summary={book.summary}></BookSummary>
               <BookAuthor author={book.author}></BookAuthor>
-              <PayWithATweet bookId={book.id}/>
+              <PayWithATweet book={book}/>
           </div>
       )
       :
