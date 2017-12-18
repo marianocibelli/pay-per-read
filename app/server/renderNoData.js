@@ -16,6 +16,7 @@ export default function renderNoData(html) {
     <html>
     <head>
       <title> Not Found </title>
+      <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no,minimum-scale=1.0,maximum-scale=1.0">
       <link rel="stylesheet" href="https://cdn.auth0.com/styleguide/core/2.0.5/core.min.css" />
       <link rel="stylesheet" href="https://cdn.auth0.com/styleguide/components/2.0.0/components.min.css" />
       ${cssArray}

@@ -103,6 +103,14 @@ background-color: #172F7F
   }
 }
 @media (max-width: 719px) {
+  .author-photo-section {
+    text-align: center;
+  }
+
+  .author-description-section {
+    padding-top: 20px;
+  }
+
   .about-desktop {
     display: none;
   }

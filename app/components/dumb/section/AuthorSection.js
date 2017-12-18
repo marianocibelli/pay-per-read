@@ -9,11 +9,11 @@ const AuthorSection = (props) =>{
       return (<section className="author-section">
                 <div className="container">
                   <div className="row">
-                    <div className="col-md-4">
+                    <div className="col-md-4 author-photo-section">
                       <h1 className="title about-mobile" >About the author</h1>
                       <Image image={book.author.fields.image.fields.file.url} />
                     </div>
-                    <div className="col-md-8">
+                    <div className="col-md-8 author-description-section">
                       <h1 className="title about-desktop" >About the author</h1>
                       <BookAuthorDescription authorDescription={book.author.fields.description}/>
                       <BookAuthorSocial socialMediaLink={book.author.fields.social} />
