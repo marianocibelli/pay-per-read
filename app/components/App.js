@@ -8,7 +8,10 @@ if (process.env.BROWSER) {
 }
 
 const App = (props) => {
-  return (
+  const search = props.location.search.substr(1);
+  const params = search.split("&");
+  return !params.indexOf('debug=true') ?
+  (
 
     <div>
     <p> Links for testing navigation </p>
@@ -17,6 +20,12 @@ const App = (props) => {
       <li><Link to='/books/libro-2'> LIBRO 2</Link></li>
       <li><Link to='/books/not-test'> NOT FOUND</Link></li>
     </ul>
+      <Routes props={props}/>
+    </div>
+  )
+  :
+  (
+    <div>
       <Routes props={props}/>
     </div>
   )
