@@ -8,7 +8,7 @@ module.exports = {
   devtool: 'inline-source-map',
   entry: './app/index.js',
   output: {
-    path: path.join(__dirname, 'build'),
+    path: path.join(__dirname, 'build/statics'),
     filename: 'bundle.js',
     publicPath: '/'
   },
@@ -38,7 +38,7 @@ module.exports = {
     ]
   },
   plugins: [
-    new AssetsPlugin({path: path.join(__dirname, 'build')}),
+    new AssetsPlugin({path: path.join(__dirname, 'build/statics')}),
     new ExtractTextPlugin({
 			filename: "[name].css",
       allChunks: true,

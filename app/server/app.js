@@ -7,7 +7,7 @@ import apiRouter from './routes/api';
 
 
 const app = express();
-const assets = express.static(path.join(__dirname, '../'));
+const assets = express.static(path.join(__dirname, '../statics/'));
 
 
 

@@ -1,4 +1,4 @@
-import jsonAssets from '../webpack-assets.json';
+import jsonAssets from '../statics/webpack-assets.json';
 let jsArray = '';
 let cssArray = '';
 for(let bundle of Object.entries(jsonAssets).reverse()){

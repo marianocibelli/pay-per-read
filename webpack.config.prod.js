@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const AssetsPlugin = require('assets-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 module.exports = {
   entry: {
@@ -10,7 +11,7 @@ module.exports = {
     vendor: ['react', 'react-dom']
   },
   output: {
-    path: path.join(__dirname, 'build'),
+    path: path.join(__dirname, 'build/statics'),
     filename: '[name].[chunkhash:8].js',
     chunkFilename: '[name].[chunkhash:8].chunk.js',
     publicPath: '/'
@@ -43,7 +44,7 @@ module.exports = {
         allChunks: true,
         disable: false
       }),
-      new AssetsPlugin({path: path.join(__dirname, 'build')}),
+      new AssetsPlugin({path: path.join(__dirname, 'build/statics')}),
       new webpack.DefinePlugin({
           'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
       }),
@@ -58,6 +59,7 @@ module.exports = {
             BROWSER: JSON.stringify(true)
         }
       }),
+      new OptimizeCssAssetsPlugin(),
       new webpack.optimize.UglifyJsPlugin({
           sourceMap: false,
           comments: false,
