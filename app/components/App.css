@@ -30,6 +30,22 @@ img {
   font-size: 13px;
 }
 
+.written-by {
+  font-weight: 500;
+  margin-bottom: 0px;
+}
+
+.book-version {
+  font-size: 13px;
+  color: gray;
+  font-weight: 500;
+}
+
+.book-version i {
+  padding-right: 3px;
+  font-size: 14px;
+}
+
 .book-card .book-details {
     padding: 30px 30px 24px;
     border: 1px solid #ccc;
