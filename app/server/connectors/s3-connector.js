@@ -10,7 +10,7 @@ const ttl = 120;
 export function generateDownloadLink(resourceName){
   const url = s3.getSignedUrl('getObject', {
     Bucket: bucket,
-    Key: resourceName,
+    Key: `${resourceName}.pdf`,
     Expires: ttl
   })
   return url;
