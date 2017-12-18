@@ -2,7 +2,7 @@ import React from 'react';
 
 const BookTagline = (props) =>{
       const {tagline} = props;
-      return (<div>{tagline}</div>)
+      return (<h3 className="book-title">{tagline}</h3>)
 }
 
 export default BookTagline

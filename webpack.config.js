@@ -1,7 +1,8 @@
 const path = require('path');
 const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const AssetsPlugin = require('assets-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+
 
 module.exports = {
   devtool: 'inline-source-map',
@@ -13,6 +14,15 @@ module.exports = {
   },
   module: {
     loaders: [
+      {
+        include: path.join(__dirname, 'app'),
+        exclude: /node_modules/,
+        test: /\.css$/,
+        loader: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: ['css-loader'],
+        })
+      },
       {
         test: /.js$/,
         loader: 'babel-loader',
@@ -29,8 +39,18 @@ module.exports = {
   },
   plugins: [
     new AssetsPlugin({path: path.join(__dirname, 'build')}),
+    new ExtractTextPlugin({
+			filename: "[name].css",
+      allChunks: true,
+      disable: false
+		}),
     new webpack.DefinePlugin({
         'process.env.AUTH0_CALLBACK': JSON.stringify(process.env.AUTH0_CALLBACK),
+    }),
+    new webpack.DefinePlugin({
+        "process.env": {
+            BROWSER: JSON.stringify(true)
+        }
     })
   ]
 };

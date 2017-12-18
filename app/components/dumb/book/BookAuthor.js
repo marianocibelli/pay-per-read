@@ -2,7 +2,7 @@ import React from 'react';
 
 const BookAuthor = (props) =>{
       const {author} = props;
-      return (<div>{author}</div>)
+      return (<p className="written-by">{author}</p>)
 }
 
 export default BookAuthor

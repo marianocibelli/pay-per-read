@@ -2,7 +2,7 @@ import React from 'react';
 
 const BookSummary = (props) =>{
       const {summary} = props;
-      return (<div>{summary}</div>)
+      return (<p className="description">{summary}</p>)
 }
 
 export default BookSummary;

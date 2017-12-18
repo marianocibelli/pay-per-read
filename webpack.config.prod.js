@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const AssetsPlugin = require('assets-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   entry: {
@@ -24,10 +25,24 @@ module.exports = {
         query: {
           presets: ['es2015', 'react']
         }
+      },
+      {
+        include: path.join(__dirname, 'app'),
+        exclude: /node_modules/,
+        test: /\.css$/,
+        loader: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: ['css-loader'],
+        })
       }
     ]
   },
   plugins: [
+      new ExtractTextPlugin({
+        filename: "[name].css",
+        allChunks: true,
+        disable: false
+      }),
       new AssetsPlugin({path: path.join(__dirname, 'build')}),
       new webpack.DefinePlugin({
           'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
@@ -37,6 +52,11 @@ module.exports = {
       }),
       new webpack.optimize.CommonsChunkPlugin({
           name: ['vendor', 'manifest']
+      }),
+      new webpack.DefinePlugin({
+        "process.env": {
+            BROWSER: JSON.stringify(true)
+        }
       }),
       new webpack.optimize.UglifyJsPlugin({
           sourceMap: false,

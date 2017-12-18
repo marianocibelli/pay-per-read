@@ -2,10 +2,9 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
 import PayWithATweet from './PayWithATweetContainer';
-import BookAuthor from '../dumb/BookAuthor';
-import BookSummary from '../dumb/BookSummary';
-import BookTagline from '../dumb/BookTagline';
-import BookTitle from '../dumb/BookTitle';
+import BookSection from '../dumb/section/BookSection';
+import AuthorSection from '../dumb/section/AuthorSection';
+import TryAuth0Section from '../dumb/section/TryAuth0Section';
 import { withRouter } from 'react-router'
 import _ from 'lodash'
 
@@ -48,13 +47,11 @@ class BookContainer extends React.Component {
     const { book } = this.state
       return book ?
       (
-          <div>
-              <BookTitle title={book.name}></BookTitle>
-              <BookTagline tagline={book.tagline}></BookTagline>
-              <BookSummary summary={book.summary}></BookSummary>
-              <BookAuthor author={book.author}></BookAuthor>
-              <PayWithATweet book={book}/>
-          </div>
+        <div>
+          <BookSection book={book} />
+          <AuthorSection book={book} />
+          <TryAuth0Section />
+        </div>
       )
       :
       (

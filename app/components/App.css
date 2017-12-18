@@ -1,0 +1,147 @@
+section {
+  padding: 80px 0;
+}
+
+.title {
+  margin-top: 0;
+}
+
+img {
+  max-width: 100%;
+}
+
+.book-card .book-title {
+  margin: 0 0 25px;
+    font-size: 18px;
+    font-weight: 400;
+    color: #000;
+    line-height: 25px;
+}
+
+.book-card img {
+  height:224px;
+}
+
+.book-card .book-details {
+    padding: 30px 30px 24px;
+    border: 1px solid #ccc;
+    border-top: 0;
+    -webkit-box-shadow: -1px 10px 32px -4px rgba(186,186,186,1);
+    -moz-box-shadow: -1px 10px 32px -4px rgba(186,186,186,1);
+    box-shadow: -1px 10px 32px -4px rgba(186,186,186,1);
+}
+
+
+.author-section {
+background-color: #172F7F
+}
+
+.author-section h1,
+.author-section p {
+  color: white;
+}
+
+.try-auth0-section {
+  background-color: white;
+}
+
+.try-auth0-section .container {
+  background-color: #F8F8F8;
+}
+
+.try-auth0-card {
+  padding: 45px 0;
+}
+.try-auth0-logo {
+  max-width: 60px;
+}
+.book-card .written-by {
+  font-size: 12px;
+}
+
+.try-auth0-card ul li i{
+  color: #21A888;
+  font-size: 20px;
+  margin-right: 3px;
+}
+
+@media (min-width: 720px) {
+  .author-section {
+    height: 700px;
+  }
+
+  .book-card {
+    padding-right: 25px;
+  }
+
+  .try-auth0-section .container {
+    margin-top: -300px;
+  }
+
+  .try-auth0-card ul {
+    list-style: none;
+    padding: 0 0 30px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .try-auth0-card ul li {
+    padding: 0 15px;
+  }
+  .try-auth0-card button {
+    margin-left: 5px;
+  }
+  .mobile-title {
+    display: none
+  }
+  .about-mobile {
+    display: none;
+  }
+
+  .auth0-li-icon{
+    color: green;
+  }
+}
+@media (max-width: 719px) {
+  .about-desktop {
+    display: none;
+  }
+
+  .book-card {
+    padding-right: 5px;
+  }
+
+  .book-version {
+    display: none;
+  }
+
+  .book-data {
+    padding-top: 25px;
+  }
+
+  .book-data .written-by {
+    display: none;
+  }
+  .desktop-title {
+    display: none
+  }
+
+  .try-auth0-section {
+    padding: 0px;
+  }
+
+  .try-auth0-card ul {
+    list-style: none;
+    padding-left: 0px;
+  }
+
+  button {
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .try-auth0-card ul li {
+    text-align: left;
+  }
+}
