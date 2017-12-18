@@ -33,7 +33,10 @@ img {
 
 
 .author-section {
-background-color: #172F7F
+background: -webkit-linear-gradient(to right, #183289, #162358);
+background: -o-linear-gradient(to right, #183289, #162358);
+background: -moz-linear-gradient(to right, #183289, #162358);
+background: linear-gradient(to right, #183289, #162358); 
 }
 
 .author-section h1,
