@@ -16,9 +16,9 @@ const App = (props) => {
     <div>
     <p> Links for testing navigation </p>
     <ul>
-      <li><Link to='/books/an-introduction-to-ethereum-and-smart-contracts'> LIBRO TEST</Link></li>
-      <li><Link to='/books/libro-2'> LIBRO 2</Link></li>
-      <li><Link to='/books/not-test'> NOT FOUND</Link></li>
+      <li><Link to='/books/an-introduction-to-ethereum-and-smart-contracts?debug=true'> LIBRO TEST</Link></li>
+      <li><Link to='/books/libro-2?debug=true'> LIBRO 2</Link></li>
+      <li><Link to='/books/not-test?debug=true'> NOT FOUND</Link></li>
     </ul>
       <Routes props={props}/>
     </div>
