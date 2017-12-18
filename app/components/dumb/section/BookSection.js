@@ -19,6 +19,8 @@ const BookSection = (props) =>{
                     <div className="col-md-4">
                       <div className="book-card">
                         <BookTitle cssClasses="text-center title mobile-title" title={book.name} />
+                        <BookAuthor author={book.author.fields.name} />
+                        <BookVersion version={book.version} />
                         <Image image={book.image.fields.file.url} />
                         <div className="book-details">
                         <BookTagline tagline={book.tagline}></BookTagline>

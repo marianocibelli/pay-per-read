@@ -17,6 +17,5 @@ for c in $(docker ps -q)
 do
   docker stop $c
 done
-#Here we need to pass all the env variables needed, that includes APP_ENV, AWS permissions in case we are not deploying on a well configured IAM role instance (not our problem here) and CONTENTFUL.
-#For security purpose i will manually configured them in the instance and pass them to the docker
+
 docker run -e APP_ENV=prod -e AUTH0_CALLBACK="http://54.227.94.190:3001/callback" -p 3001:3001 -d pay-per-read

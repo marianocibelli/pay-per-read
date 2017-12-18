@@ -93,6 +93,14 @@ background: linear-gradient(to right, #183289, #162358);
 }
 
 @media (min-width: 720px) {
+  .book-card .book-version {
+    display: none;
+  }
+
+  .book-card .written-by {
+    display: none;
+  }
+
   .author-section {
     height: 700px;
   }
@@ -130,6 +138,15 @@ background: linear-gradient(to right, #183289, #162358);
   }
 }
 @media (max-width: 719px) {
+  .book-card .book-version {
+    text-align: center;
+  }
+
+  .book-card .written-by {
+    padding-top: 5px;
+    text-align: center;
+  }
+
   .author-photo-section {
     text-align: center;
   }
@@ -146,7 +163,7 @@ background: linear-gradient(to right, #183289, #162358);
     padding-right: 5px;
   }
 
-  .book-version {
+  .book-data .book-version {
     display: none;
   }
 
