@@ -100,8 +100,12 @@ export default class Auth {
           .post(`/api/books/download/${bookId}?name=${bookName}&tagline=${bookTagline}`, session, headers)
           .then((result) => {
             localStorage.setItem('downloadLink',result.data);
-            window.close();
-            opener.open(result.data);
+            if(opener){
+              window.close();
+              opener.open(result.data);
+            }else{
+              window.location = result.data
+            }
           }).catch(err => {
             throw err;
             window.close();

@@ -21,9 +21,9 @@ export default function router(req, res){
   }
 
   //Extract book id from match. Since we just have 1 match and its a /books/:id we dont have to safe check it again but in case we add more independent views we should do it
-  const params = match.params.bookId.split('?');
-  const bookId = params[0];
-  if(bookId){
+  if(match.params.bookId){
+    const params = match.params.bookId.split('?');
+    const bookId = params[0];
     return getBookBasicData(bookId).then(book => {
       const context = {};
       const html = renderToString(
