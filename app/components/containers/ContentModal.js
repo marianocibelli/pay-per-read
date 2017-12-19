@@ -23,7 +23,9 @@ class ContentModal extends React.Component {
     this.handleOpenModal = this.handleOpenModal.bind(this);
     this.handleCloseModal = this.handleCloseModal.bind(this);
   }
-
+  componentDidMount(){
+    ReactModal.setAppElement("#main")
+  }
   componentWillReceiveProps(nextProps){
     const book = this.state.book;
     const nextBook = nextProps.book;
