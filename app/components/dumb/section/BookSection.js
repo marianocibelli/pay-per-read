@@ -22,11 +22,14 @@ const BookSection = (props) =>{
                         <BookTitle cssClasses="text-center title mobile-title" title={book.name} />
                         <BookAuthor author={book.author.fields.name} />
                         <BookVersion version={book.version} />
-                        <Image image={book.image.fields.file.url} />
-                        <div className="book-details">
-                        <BookTagline tagline={book.tagline}></BookTagline>
-                        <BookCardAuthor author={book.author.fields.name} />
+                        <div className="book-image">
+                          <Image image={book.image.fields.file.url} />
                         </div>
+                        <div className="book-details">
+                          <BookTagline tagline={book.tagline}></BookTagline>
+                          <BookCardAuthor author={book.author.fields.name} />
+                        </div>
+
                       </div>
                     </div>
                     <div className="col-md-8">

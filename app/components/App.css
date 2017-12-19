@@ -18,8 +18,17 @@ img {
     line-height: 25px;
 }
 
-.book-card img {
-  height:224px;
+.book-card .book-image {
+  height: 224px;
+  overflow: hidden;
+  position: relative;;
+}
+
+.book-card .book-image img{
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  transform: translateY(-50%);
 }
 
 .book-intro {
@@ -87,10 +96,6 @@ background: linear-gradient(to right, #183289, #162358);
   color: white;
 }
 
-.try-auth0-section {
-  background-color: white;
-}
-
 .try-auth0-section .container {
   background-color: #F8F8F8;
 }
@@ -147,7 +152,7 @@ background: linear-gradient(to right, #183289, #162358);
   background-color: rgba(0, 0, 0, 0.8);
 }
 
-@media (min-width: 720px) {
+@media (min-width: 1200px) {
 
 
   .content-modal-box {
@@ -182,6 +187,10 @@ background: linear-gradient(to right, #183289, #162358);
     padding-right: 25px;
   }
 
+  .try-auth0-section {
+    background-color: white;
+  }
+
   .try-auth0-section .container {
     margin-top: -300px;
   }
@@ -210,7 +219,7 @@ background: linear-gradient(to right, #183289, #162358);
     color: green;
   }
 }
-@media (max-width: 719px) {
+@media (max-width: 1199px) {
   .content-modal-box {
     position: absolute;
     top: 0px;
@@ -267,6 +276,10 @@ background: linear-gradient(to right, #183289, #162358);
   }
   .desktop-title {
     display: none
+  }
+
+  .try-auth0-section {
+    background-color: #f8f8f8;
   }
 
   .try-auth0-section {
