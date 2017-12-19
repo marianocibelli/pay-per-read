@@ -1,5 +1,6 @@
 import React from 'react';
 import PayWithATweet from '../../containers/PayWithATweetContainer';
+import ContentModal from '../../containers/ContentModal';
 import BookAuthor from '../book/BookAuthor';
 import BookCardAuthor from '../book/BookCardAuthor';
 import BookSummary from '../book/BookSummary';
@@ -35,6 +36,7 @@ const BookSection = (props) =>{
                         <BookVersion version={book.version} />
                         <BookIntro intro={book.intro} />
                         <BookSummary summary={book.summary} />
+                        <ContentModal book={book}/>
                         <div className="button-row">
                           <PayWithATweet book={book}/>
                         </div>

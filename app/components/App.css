@@ -55,6 +55,25 @@ img {
     box-shadow: -1px 10px 32px -4px rgba(186,186,186,1);
 }
 
+.content-modal {
+  padding-bottom: 20px;
+}
+
+.content-modal a{
+  font-weight: 500;
+  text-decoration: none;
+  color: black;
+  cursor: pointer;
+}
+
+.close-modal {
+  color: gray;
+  position: absolute;
+  right: 20px;
+  top: 10px;
+  font-size: 17px;
+  cursor: pointer;
+}
 
 .author-section {
 background: -webkit-linear-gradient(to right, #183289, #162358);
@@ -92,7 +111,61 @@ background: linear-gradient(to right, #183289, #162358);
   margin-right: 3px;
 }
 
+.modal-title {
+    font-size: 28px;
+}
+
+.modal-data-container {
+    padding-top: 30px;
+}
+
+.content-index-line {
+  overflow: hidden;
+}
+
+.content-index-name {
+  float: left;
+  display: inline;
+  margin-right: 10px;
+}
+
+.content-index-parent{
+  font-weight: 500;
+}
+
+.content-index-page {
+  float: right;
+  display: inline;
+}
+
+.content-modal-overlay {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
 @media (min-width: 720px) {
+
+
+  .content-modal-box {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    right: 40px;
+    bottom: 40px;
+    border: 1px solid rgb(204, 204, 204);
+    background: rgb(255, 255, 255) none repeat scroll 0% 0%;
+    overflow: auto;
+    border-radius: 0px;
+    outline: medium none currentcolor;
+    padding: 20px;
+    margin: auto;
+    width: 50%;
+  }
+
   .book-card .book-version {
     display: none;
   }
@@ -138,6 +211,24 @@ background: linear-gradient(to right, #183289, #162358);
   }
 }
 @media (max-width: 719px) {
+  .content-modal-box {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    border: 1px solid rgb(204, 204, 204);
+    background: rgb(255, 255, 255) none repeat scroll 0% 0%;
+    overflow: auto;
+    border-radius: 0px;
+    outline: medium none currentcolor;
+    padding: 20px;
+  }
+
+  .modal-data-container{
+    text-align: center;
+  }
+
   .book-card .book-version {
     text-align: center;
   }

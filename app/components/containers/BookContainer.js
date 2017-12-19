@@ -1,7 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
-import PayWithATweet from './PayWithATweetContainer';
 import BookSection from '../dumb/section/BookSection';
 import AuthorSection from '../dumb/section/AuthorSection';
 import TryAuth0Section from '../dumb/section/TryAuth0Section';

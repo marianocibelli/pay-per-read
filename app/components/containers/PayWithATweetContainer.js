@@ -65,7 +65,6 @@ class PayWithATweetContainer extends React.Component {
   }
 
   payWithATweet() {
-    console.log(this.state);
     const {book} = this.state;
     auth.login(book, this);
   }
