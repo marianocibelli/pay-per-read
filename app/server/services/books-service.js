@@ -19,6 +19,8 @@ export function downloadBook(req,res,next){
         res.status(401).send("Authorization failed")
        }
     });
+  }).catch((err) => {
+      res.status(500).send("There were some errors, please try again later")
   })
 }
 
