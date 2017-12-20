@@ -4,7 +4,7 @@ set -euo pipefail
 
 ENV=$1
 PROJECT_NAME=$2
-APP_VERSION=$3
+APPLICATION_VERSION=$3
 
 #Download zip with project version
 aws s3 cp s3://exmc-application-deploys/$PROJECT_NAME/builds/$ENV/$APPLICATION_VERSION.zip /tmp/app.zip
@@ -12,6 +12,8 @@ aws s3 cp s3://exmc-application-deploys/$PROJECT_NAME/builds/$ENV/$APPLICATION_V
 rm -rf /tmp/application
 #Unzip
 unzip -o /tmp/app.zip -d /tmp/application
+aws s3 cp s3://exmc-application-deploys/.env/.env.prod /tmp/application/.env.prod
+
 docker build -t pay-per-read /tmp/application
 for c in $(docker ps -q)
 do
