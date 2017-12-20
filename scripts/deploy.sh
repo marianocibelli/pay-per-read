@@ -52,4 +52,4 @@ aws s3 cp /tmp/app.zip s3://exmc-application-deploys/$PROJECT_NAME/builds/$ENV/$
 # Beside this we could also use dockerhub for a better implementation instead of using s3 upload and github tag versioning (and if we go that way we should go all in into kubernetes but that requires like a lot of work)
 
 #I will commit start-up.sh in the project too so its easier to check it out but its fairly simple.
-ssh -t ec2-user@$INSTANCE_IP `sudo /opt/deploys/scripts/start-up.sh $ENV $PROJECT_NAME $APPLICATION_VERSION`
+ssh -t ec2-user@$INSTANCE_IP "sudo /opt/deploys/scripts/start-up.sh $ENV $PROJECT_NAME $APPLICATION_VERSION"
